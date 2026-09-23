@@ -1,53 +1,93 @@
 ```javascript
 /* =========================================================
    MERIDIAN HAUS
+   MASTER JAVASCRIPT
    Powered by The Rogue Chef
-   Global JavaScript
-========================================================= */
+   ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================================
-       MOBILE NAVIGATION
-    ===================================================== */
+       1. MOBILE NAVIGATION
+       ===================================================== */
 
     const menuToggle = document.querySelector(".menu-toggle");
     const mainNav = document.querySelector(".main-nav");
 
     if (menuToggle && mainNav) {
 
-        menuToggle.addEventListener("click", () => {
+        menuToggle.addEventListener("click", (event) => {
+            event.stopPropagation();
 
-            mainNav.classList.toggle("open");
+            mainNav.classList.toggle("active");
 
-            const expanded = mainNav.classList.contains("open");
+            const isOpen = mainNav.classList.contains("active");
 
-            menuToggle.setAttribute("aria-expanded", expanded);
-
+            menuToggle.setAttribute("aria-expanded", isOpen);
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
         });
 
-    }
 
-
-    /* =====================================================
-       CLOSE MOBILE MENU WHEN A LINK IS CLICKED
-    ===================================================== */
-
-    if (mainNav) {
+        /* Close navigation when a link is clicked */
 
         const navLinks = mainNav.querySelectorAll("a");
 
-        navLinks.forEach(link => {
-
+        navLinks.forEach((link) => {
             link.addEventListener("click", () => {
 
-                mainNav.classList.remove("open");
+                mainNav.classList.remove("active");
 
-                if (menuToggle) {
-                    menuToggle.setAttribute("aria-expanded", "false");
-                }
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open navigation menu"
+                );
 
             });
+        });
+
+
+        /* Close navigation when clicking outside */
+
+        document.addEventListener("click", (event) => {
+
+            if (
+                mainNav.classList.contains("active") &&
+                !mainNav.contains(event.target) &&
+                !menuToggle.contains(event.target)
+            ) {
+
+                mainNav.classList.remove("active");
+
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open navigation menu"
+                );
+
+            }
+
+        });
+
+
+        /* Close navigation with Escape */
+
+        document.addEventListener("keydown", (event) => {
+
+            if (event.key === "Escape") {
+
+                mainNav.classList.remove("active");
+
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open navigation menu"
+                );
+
+            }
 
         });
 
@@ -55,99 +95,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CLOSE MOBILE MENU WHEN CLICKING OUTSIDE
-    ===================================================== */
-
-    document.addEventListener("click", (event) => {
-
-        if (!mainNav || !menuToggle) return;
-
-        const clickedInsideNav = mainNav.contains(event.target);
-        const clickedMenuButton = menuToggle.contains(event.target);
-
-        if (!clickedInsideNav && !clickedMenuButton) {
-
-            mainNav.classList.remove("open");
-            menuToggle.setAttribute("aria-expanded", "false");
-
-        }
-
-    });
-
-
-    /* =====================================================
-       ESCAPE KEY CLOSES MOBILE MENU
-    ===================================================== */
-
-    document.addEventListener("keydown", (event) => {
-
-        if (event.key === "Escape" && mainNav && menuToggle) {
-
-            mainNav.classList.remove("open");
-            menuToggle.setAttribute("aria-expanded", "false");
-
-        }
-
-    });
-
-
-    /* =====================================================
-       CURRENT YEAR
-       Automatically updates footer copyright year
-    ===================================================== */
+       2. CURRENT YEAR
+       ===================================================== */
 
     const currentYear = new Date().getFullYear();
 
-    const footerYear = document.querySelector(".footer-bottom p");
+    document.querySelectorAll(".current-year").forEach((element) => {
+        element.textContent = currentYear;
+    });
 
-    if (footerYear) {
+    document.querySelectorAll(".footer-bottom p").forEach((element) => {
 
-        footerYear.textContent =
-            `© ${currentYear} Meridian Haus. All rights reserved.`;
+        if (
+            !element.querySelector(".current-year") &&
+            element.textContent.includes("©")
+        ) {
+            element.innerHTML = element.innerHTML.replace(
+                /©\s*\d{4}/,
+                `© ${currentYear}`
+            );
+        }
 
-    }
+    });
 
 
     /* =====================================================
-       SIMPLE SCROLL REVEAL
-    ===================================================== */
+       3. SCROLL REVEAL ANIMATION
+       ===================================================== */
 
-    const revealElements = document.querySelectorAll(
-        ".service-card, .recipe-card, .section-heading, .intro-text, .rogue-content"
-    );
+    const revealElements = document.querySelectorAll(".reveal");
 
-    if ("IntersectionObserver" in window) {
+    if ("IntersectionObserver" in window && revealElements.length > 0) {
 
         const revealObserver = new IntersectionObserver(
-            (entries, observer) => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("revealed");
-
-                        observer.unobserve(entry.target);
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.12
-            }
-        );
-
-        revealElements.forEach(element => {
-
-            element.classList.add("reveal");
-
-            revealObserver.observe(element);
-
-        });
-
-    }
-
-});
 ```
