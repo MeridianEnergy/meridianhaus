@@ -5,11 +5,6 @@
    Powered by The Rogue Chef
    ========================================================= */
 
-
-/* =========================================================
-   1. ROOT VARIABLES
-   ========================================================= */
-
 :root {
     --black: #0b0b0b;
     --black-soft: #111111;
@@ -25,7 +20,7 @@
     --grey: #aaa59d;
     --grey-dark: #77736d;
 
-    --border: rgba(255, 255, 255, 0.10);
+    --border: rgba(255,255,255,0.10);
 
     --max-width: 1200px;
     --transition: 0.3s ease;
@@ -33,7 +28,7 @@
 
 
 /* =========================================================
-   2. RESET
+   RESET
    ========================================================= */
 
 * {
@@ -83,7 +78,7 @@ ol {
 
 
 /* =========================================================
-   3. GLOBAL CONTAINER
+   CONTAINER
    ========================================================= */
 
 .container {
@@ -93,13 +88,671 @@ ol {
 
 
 /* =========================================================
-   4. TYPOGRAPHY
+   TYPOGRAPHY
    ========================================================= */
 
 h1,
 h2,
 h3,
 h4 {
-    font-family: Georgia, "Times Ne
-```
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.15;
+    font-weight: 600;
+}
 
+h1 {
+    font-size: clamp(3rem, 7vw, 6.5rem);
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3.6rem);
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.15rem;
+}
+
+p {
+    color: var(--grey);
+}
+
+.gold {
+    color: var(--gold);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(11,11,11,0.94);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+}
+
+.navbar {
+    min-height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.logo-main {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+}
+
+.logo-sub {
+    margin-top: 7px;
+    color: var(--gold);
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links a {
+    color: var(--cream-dark);
+    font-size: 0.86rem;
+    transition: color var(--transition);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--gold);
+}
+
+.nav-cta {
+    padding: 10px 17px;
+    border: 1px solid var(--gold);
+    color: var(--gold) !important;
+}
+
+.nav-cta:hover {
+    background: var(--gold);
+    color: var(--black) !important;
+}
+
+.menu-toggle {
+    display: none;
+    border: 0;
+    background: transparent;
+    color: var(--cream);
+    font-size: 1.8rem;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    position: relative;
+    min-height: 82vh;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.78)),
+        url("https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
+}
+
+.hero-content {
+    max-width: 850px;
+    padding: 100px 0;
+}
+
+.eyebrow {
+    display: inline-block;
+    margin-bottom: 22px;
+    color: var(--gold);
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.hero h1 {
+    margin-bottom: 28px;
+}
+
+.hero p {
+    max-width: 680px;
+    font-size: 1.12rem;
+    color: var(--cream-dark);
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 34px;
+}
+
+
+/* =========================================================
+   PAGE HERO
+   ========================================================= */
+
+.page-hero {
+    padding: 130px 0 100px;
+    background:
+        linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.88)),
+        url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
+}
+
+.page-hero h1 {
+    max-width: 850px;
+}
+
+.page-hero p {
+    max-width: 680px;
+    margin-top: 24px;
+    font-size: 1.05rem;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 24px;
+    border: 1px solid var(--gold);
+    background: var(--gold);
+    color: var(--black);
+    font-weight: bold;
+    transition: all var(--transition);
+}
+
+.btn:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--cream);
+}
+
+.btn-outline:hover {
+    background: var(--gold);
+    color: var(--black);
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.section {
+    padding: 100px 0;
+}
+
+.section-dark {
+    background: var(--black-soft);
+}
+
+.section-light {
+    background: var(--cream);
+    color: var(--black);
+}
+
+.section-heading {
+    max-width: 760px;
+    margin-bottom: 50px;
+}
+
+.section-heading p {
+    margin-top: 18px;
+}
+
+
+/* =========================================================
+   INTRO / ABOUT BLOCKS
+   ========================================================= */
+
+.intro-grid,
+.about-grid,
+.two-column {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.intro-text p + p,
+.about-text p + p {
+    margin-top: 18px;
+}
+
+.intro-image,
+.about-image {
+    min-height: 480px;
+    background:
+        linear-gradient(rgba(0,0,0,0.08), rgba(0,0,0,0.22)),
+        url("https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1400&q=85")
+        center/cover no-repeat;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.card {
+    padding: 32px;
+    background: var(--black-light);
+    border: 1px solid var(--border);
+    transition: transform var(--transition), border-color var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(201,164,92,0.55);
+}
+
+.card h3 {
+    margin-bottom: 14px;
+}
+
+.card p {
+    font-size: 0.96rem;
+}
+
+
+/* =========================================================
+   IMAGE CARDS
+   ========================================================= */
+
+.image-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.image-card {
+    position: relative;
+    min-height: 390px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    background: var(--black-light);
+}
+
+.image-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to top, rgba(0,0,0,0.88), rgba(0,0,0,0.05));
+    z-index: 1;
+}
+
+.image-card-content {
+    position: relative;
+    z-index: 2;
+    padding: 30px;
+}
+
+.image-card h3 {
+    margin-bottom: 10px;
+}
+
+
+/* =========================================================
+   PHILOSOPHY
+   ========================================================= */
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.philosophy-item {
+    padding: 28px 0;
+    border-top: 1px solid var(--gold);
+}
+
+.philosophy-item span {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+}
+
+.philosophy-item h3 {
+    margin-bottom: 12px;
+}
+
+
+/* =========================================================
+   CATERING
+   ========================================================= */
+
+.catering-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.catering-card {
+    padding: 38px;
+    background: var(--black-light);
+    border: 1px solid var(--border);
+}
+
+.catering-card h3 {
+    margin-bottom: 15px;
+}
+
+.catering-card ul {
+    margin-top: 18px;
+    color: var(--grey);
+}
+
+.catering-card li {
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   SERVICES
+   ========================================================= */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.service-card {
+    padding: 34px;
+    border: 1px solid var(--border);
+    background: var(--black-soft);
+}
+
+.service-number {
+    display: block;
+    margin-bottom: 25px;
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+}
+
+.service-card h3 {
+    margin-bottom: 14px;
+}
+
+
+/* =========================================================
+   PROCESS
+   ========================================================= */
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.process-step {
+    padding-top: 25px;
+    border-top: 1px solid var(--gold);
+}
+
+.process-step span {
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+}
+
+.process-step h3 {
+    margin: 15px 0 10px;
+}
+
+
+/* =========================================================
+   MENUS
+   ========================================================= */
+
+.menu-section {
+    padding: 42px;
+    background: var(--black-light);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+}
+
+.menu-section h3 {
+    margin-bottom: 12px;
+}
+
+.menu-items {
+    margin-top: 25px;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.menu-item:last-child {
+    border-bottom: 0;
+}
+
+.menu-item strong {
+    color: var(--cream);
+}
+
+.menu-item span {
+    color: var(--gold);
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   ROGUE CHEF
+   ========================================================= */
+
+.rogue-feature {
+    position: relative;
+    padding: 90px 0;
+    background:
+        linear-gradient(90deg, rgba(0,0,0,0.94), rgba(0,0,0,0.62)),
+        url("https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
+}
+
+.rogue-feature-content {
+    max-width: 720px;
+}
+
+.rogue-feature h2 {
+    margin-bottom: 20px;
+}
+
+.rogue-tag {
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+}
+
+
+/* =========================================================
+   RECIPE GRID
+   ========================================================= */
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.recipe-card {
+    overflow: hidden;
+    background: var(--black-light);
+    border: 1px solid var(--border);
+    transition: transform var(--transition);
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+}
+
+.recipe-card-image {
+    height: 250px;
+    background:
+        linear-gradient(rgba(0,0,0,0.12), rgba(0,0,0,0.35)),
+        url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=85")
+        center/cover no-repeat;
+}
+
+.recipe-card-content {
+    padding: 27px;
+}
+
+.recipe-card h3 {
+    margin-bottom: 10px;
+}
+
+.recipe-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.recipe-meta span {
+    padding: 5px 9px;
+    border: 1px solid var(--border);
+    color: var(--grey);
+    font-size: 0.75rem;
+}
+
+
+/* =========================================================
+   RECIPE DETAIL
+   ========================================================= */
+
+.recipe-layout {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.recipe-hero-image {
+    min-height: 520px;
+    background:
+        linear-gradient(rgba(0,0,0,0.08), rgba(0,0,0,0.2)),
+        url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1600&q=85")
+        center/cover no-repeat;
+}
+
+.recipe-info {
+    padding: 35px;
+    background: var(--black-light);
+    border: 1px solid var(--border);
+}
+
+.recipe-info h3 {
+    margin-bottom: 20px;
+}
+
+.recipe-info-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.recipe-info-row:last-child {
+    border-bottom: 0;
+}
+
+.ingredients li,
+.method li {
+    margin-bottom: 12px;
+    color: var(--grey);
+}
+
+.method {
+    counter-reset: steps;
+    list-style: none;
+    padding-left: 0;
+}
+
+.method li {
+    counter-increment: steps;
+    position: relative;
+    padding-left: 48px;
+}
+
+.method li::before {
+    content: counter(steps);
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--gold);
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   CONTENT CALLOUT
+   ========================================================= */
+
+.content-callout {
+    padding: 45px;
+    background: var(--cream);
+    color: var(--black);
+}
+
+.content-callout p {
+    color: #4c4841;
+}
+
+.content-callout h2,
+.content-callout
+```
